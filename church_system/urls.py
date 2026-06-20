@@ -10,9 +10,6 @@ urlpatterns = [
     path('api/v1/', include('members.urls')),
     path('api/v1/', include('ministries.urls')),
     path('api/v1/', include('attendance.urls')),
-    
-    # Catch-all for Frontend (React)
-    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
 ]
 
 if settings.DEBUG:
@@ -20,3 +17,8 @@ if settings.DEBUG:
 else:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Catch-all for Frontend (React)
+urlpatterns += [
+    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
+]
